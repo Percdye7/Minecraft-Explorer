@@ -28,7 +28,7 @@ Public Class startupForm
     ' Important for Updates
     Dim ApplicationWebClient As New WebClient
     Dim ApplicationVersion As String = My.Settings.ApplicationV
-    Dim AktuelleVersion As String = ApplicationWebClient.DownloadString("http://mcsl.bplaced.net/mce/version.txt") 'URL Muss zum Server & version.txt Fuehren!
+    Dim AktuelleVersion As String = ApplicationWebClient.DownloadString("$SERVER$/version.txt") 'URL Muss zum Server & version.txt Fuehren!
 #End Region ' startupForm Variables
 
 #Region "Check Network Connection"
