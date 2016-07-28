@@ -136,6 +136,22 @@ Public Class startupForm
     End Sub
 #End Region
 
+#Region "Button All Items"
+    Private Sub buttonItems_Click(sender As Object, e As EventArgs) Handles buttonItems.Click
+        allItmes.Show()
+    End Sub
+#End Region
 
+#Region "Button allRedstoneCommands"
+    Private Sub openRedstoneCommands_Click(sender As Object, e As EventArgs) Handles openRedstoneCommands.Click
+        allRedstoneCommands.Show()
+    End Sub
+#End Region
+
+#Region "allStructures"
+    Private Sub openStructures_Click(sender As Object, e As EventArgs) Handles openStructures.Click
+        allStructures.Show()
+    End Sub
+#End Region
 
 End Class
