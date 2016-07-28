@@ -1,10 +1,11 @@
-﻿Imports System.Net
+Imports System.Net
 Imports System.Drawing
 Imports Minecraft_Explorer.startupForm
 Imports Minecraft_Explorer.Updater
 Imports Minecraft_Explorer.allMobs
 Imports Minecraft_Explorer.allBlocks
 Imports Minecraft_Explorer.Settings
+Imports Minecraft_Explorer.authorAndThanks
 
 Public Class Globals
     ' Global Variables of the Minecraft Explorer
@@ -25,7 +26,7 @@ Public Class Globals
     Public Shared CreeperFace As Image
     Public Shared SettingsWrench As Image
     Public Shared blockStoneBricks As Image
-
+    Public Shared MyProfilePicture As Image
     ' Application Colors
     Public Shared GlobalAppColorStyleFormBackground As Color
     Public Shared GlobalAppColorStyleFormPanel As Color
@@ -56,6 +57,15 @@ Public Class Globals
         startupForm.picturebox_settings.Image = SettingsWrench
 #End Region
 
+#Region "Profile Pictures"
+        Dim MyProfilePicture As Image = My.Resources.icon_me
+        authorAndThanks.picturebox_iconme.Image = MyProfilePicture
+#End Region
+
+
+
+
+
 #Region "Block Config / Colors"
         ' Button Colors of startupForm
         Dim ButtonColorStyleofMainButtons = ColorTranslator.FromWin32(RGB(26, 137, 31))
@@ -68,6 +78,9 @@ Public Class Globals
         'Settings Button
         startupForm.openSettings.BackColor = ButtonColorStyleofMainButtons
         startupForm.openSettings.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+
+        startupForm.openAbout.BackColor = ButtonColorStyleofMainButtons
+        startupForm.openAbout.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
 #End Region
 
         ' All Forms Must be registered Here
@@ -79,6 +92,17 @@ Public Class Globals
         startupForm.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel ' Panel Back Color
         startupForm.BackColor = GlobalAppColorStyleFormBackground ' Form Back-Color
 #End Region ' Colors of startupForm
+
+
+#Region "authorAndThanks"
+        authorAndThanks.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        authorAndThanks.BackColor = GlobalAppColorStyleFormBackground
+
+        authorAndThanks.ScienceGuy.ForeColor = ColorTranslator.FromWin32(RGB(100, 65, 164))
+
+        authorAndThanks.exitAbout.BackColor = ButtonColorStyleofMainButtons
+        authorAndThanks.exitAbout.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
 
 #Region "Updater"
         Updater.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel ' Panel Back Color
