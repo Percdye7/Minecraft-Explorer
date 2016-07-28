@@ -7,11 +7,15 @@ Imports Minecraft_Explorer.Globals
 ' Dies ist ein Komplett- Re-write des Minecraft Explorers
 ' Weil die Sehr Alte Version mittlerweile nicht mehr von VB unterstuezt wird, Nicht gut aussah und Viele Programmfehler
 ' gehabt hat.
+'
+' Danke an twitch.tv/TheNotSoScienceGuy fuer das Helfen des Designs und dem Farben
 
 ' -------> ENGLISH <-------
 ' This is a Full Re-write of the Minecraft Explorer
 ' It got re-writed by me because the Old one was not Supported Anymore/ Deprecated
 ' it didn't look well and got many Bugs and Issues
+'
+' Thanks to twitch.tv/TheNotSoScienceGuy for Helping me out with The Designs and Colors.
 
 Public Class startupForm
 
