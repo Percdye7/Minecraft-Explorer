@@ -8,11 +8,10 @@ Imports Minecraft_Explorer.Globals
 ' Weil die Sehr Alte Version mittlerweile nicht mehr von VB unterstuezt wird, Nicht gut aussah und Viele Programmfehler
 ' gehabt hat.
 
-
 ' -------> ENGLISH <-------
 ' This is a Full Re-write of the Minecraft Explorer
 ' It got re-writed by me because the Old one was not Supported Anymore/ Deprecated
-' i didn't look well and got many Bugs and Issues
+' it didn't look well and got many Bugs and Issues
 
 Public Class startupForm
 
