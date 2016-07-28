@@ -4,6 +4,9 @@ Imports Minecraft_Explorer.startupForm
 Imports Minecraft_Explorer.Updater
 Imports Minecraft_Explorer.allMobs
 Imports Minecraft_Explorer.allBlocks
+Imports Minecraft_Explorer.allItmes
+Imports Minecraft_Explorer.allRedstoneCommands
+Imports Minecraft_Explorer.allStructures
 Imports Minecraft_Explorer.Settings
 Imports Minecraft_Explorer.authorAndThanks
 
@@ -26,7 +29,10 @@ Public Class Globals
     Public Shared CreeperFace As Image
     Public Shared SettingsWrench As Image
     Public Shared blockStoneBricks As Image
+    Public Shared iconIngot As Image
     Public Shared MyProfilePicture As Image
+    Public Shared RedstoneIcon As Image
+    Public Shared blockStructureBlock As Image
     ' Application Colors
     Public Shared GlobalAppColorStyleFormBackground As Color
     Public Shared GlobalAppColorStyleFormPanel As Color
@@ -47,6 +53,15 @@ Public Class Globals
 #End Region
 
 #Region "startupForm Button Icons"
+        blockStructureBlock = My.Resources.icon_StructureBlock
+        startupForm.picturebox_structures.Image = blockStructureBlock
+
+        RedstoneIcon = My.Resources.icon_redstone
+        startupForm.picturebox_redstoneCommands.Image = RedstoneIcon
+
+        iconIngot = My.Resources.icon_ingot
+        startupForm.picturebox_items.Image = iconIngot
+
         blockStoneBricks = My.Resources.icon_blockStoneBricks
         startupForm.picturebox_blocks.Image = blockStoneBricks
 
@@ -62,13 +77,18 @@ Public Class Globals
         authorAndThanks.picturebox_iconme.Image = MyProfilePicture
 #End Region
 
-
-
-
-
 #Region "Block Config / Colors"
         ' Button Colors of startupForm
         Dim ButtonColorStyleofMainButtons = ColorTranslator.FromWin32(RGB(26, 137, 31))
+        'All Structures Button
+        startupForm.openStructures.BackColor = ButtonColorStyleofMainButtons
+        startupForm.openStructures.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Redstone Commands Button
+        startupForm.openRedstoneCommands.BackColor = ButtonColorStyleofMainButtons
+        startupForm.openRedstoneCommands.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Ingot Button
+        startupForm.buttonItems.BackColor = ButtonColorStyleofMainButtons
+        startupForm.buttonItems.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
         'Blocks Button
         startupForm.buttonBlocks.BackColor = ButtonColorStyleofMainButtons
         startupForm.buttonBlocks.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
@@ -81,6 +101,9 @@ Public Class Globals
 
         startupForm.openAbout.BackColor = ButtonColorStyleofMainButtons
         startupForm.openAbout.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+
+        startupForm.browseWiki.BackColor = ButtonColorStyleofMainButtons
+        startupForm.browseWiki.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
 #End Region
 
         ' All Forms Must be registered Here
@@ -112,17 +135,32 @@ Public Class Globals
 #Region "allMobs"
         allMobs.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel ' Panel Back Color
         allMobs.BackColor = GlobalAppColorStyleFormBackground ' Form Back-Color
-#End Region
+#End Region ' Colors of allMobs
 
 #Region "allBlocks"
         allBlocks.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
         allBlocks.BackColor = GlobalAppColorStyleFormBackground
-#End Region
+#End Region ' Colors of allBlocks
 
 #Region "Settings"
         Settings.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
         Settings.BackColor = GlobalAppColorStyleFormBackground
-#End Region
+#End Region ' Colors of Settings
+
+#Region "allItems"
+        allItmes.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        allItmes.BackColor = GlobalAppColorStyleFormBackground
+#End Region ' Colors of allItems
+
+#Region "allRedstoneCommands"
+        allRedstoneCommands.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        allRedstoneCommands.BackColor = GlobalAppColorStyleFormBackground
+#End Region ' Colors of allRedstoneCommands
+
+#Region "allStructures"
+        allStructures.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        allStructures.BackColor = GlobalAppColorStyleFormBackground
+#End Region ' Colors of allStructures
 
         ' End of all forms
 
