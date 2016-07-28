@@ -130,6 +130,12 @@ Public Class startupForm
     End Sub
 #End Region
 
+#Region "Button openAbout"
+    Private Sub openabout_Click(sender As Object, e As EventArgs) Handles openAbout.Click
+        authorAndThanks.Show()
+    End Sub
+#End Region
+
 
 
 End Class
