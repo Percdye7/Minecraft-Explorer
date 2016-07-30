@@ -110,8 +110,6 @@ Public Class startupForm
 #End Region ' Close Icon in the top-right
 
 
-
-
 #Region "Button Blocks"
     Private Sub buttonBlocks_Click(sender As Object, e As EventArgs) Handles buttonBlocks.Click
         allBlocks.Show()
@@ -151,6 +149,18 @@ Public Class startupForm
 #Region "allStructures"
     Private Sub openStructures_Click(sender As Object, e As EventArgs) Handles openStructures.Click
         allStructures.Show()
+    End Sub
+#End Region
+
+#Region "Button browseWiki"
+    Private Sub openWikibrowse_Click(sender As Object, e As EventArgs) Handles openWikibrowse.Click
+        browseWiki.Show()
+    End Sub
+#End Region
+
+#Region "Button allCommands"
+    Private Sub commands_Click(sender As Object, e As EventArgs) Handles commands.Click
+        allCommands.Show()
     End Sub
 #End Region
 
