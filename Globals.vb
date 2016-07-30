@@ -9,6 +9,8 @@ Imports Minecraft_Explorer.allRedstoneCommands
 Imports Minecraft_Explorer.allStructures
 Imports Minecraft_Explorer.Settings
 Imports Minecraft_Explorer.authorAndThanks
+Imports Minecraft_Explorer.browseWiki
+Imports Minecraft_Explorer.allCommands
 
 Public Class Globals
     ' Global Variables of the Minecraft Explorer
@@ -33,6 +35,7 @@ Public Class Globals
     Public Shared MyProfilePicture As Image
     Public Shared RedstoneIcon As Image
     Public Shared blockStructureBlock As Image
+    Public Shared iconCommandBlock As Image
     ' Application Colors
     Public Shared GlobalAppColorStyleFormBackground As Color
     Public Shared GlobalAppColorStyleFormPanel As Color
@@ -53,6 +56,10 @@ Public Class Globals
 #End Region
 
 #Region "startupForm Button Icons"
+
+        iconCommandBlock = My.Resources.icon_commandBlock
+        startupForm.picturebox_commands.Image = iconCommandBlock
+
         blockStructureBlock = My.Resources.icon_StructureBlock
         startupForm.picturebox_structures.Image = blockStructureBlock
 
@@ -80,6 +87,9 @@ Public Class Globals
 #Region "Block Config / Colors"
         ' Button Colors of startupForm
         Dim ButtonColorStyleofMainButtons = ColorTranslator.FromWin32(RGB(26, 137, 31))
+        'Commands Button
+        startupForm.commands.BackColor = ButtonColorStyleofMainButtons
+        startupForm.commands.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
         'All Structures Button
         startupForm.openStructures.BackColor = ButtonColorStyleofMainButtons
         startupForm.openStructures.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
@@ -98,19 +108,19 @@ Public Class Globals
         'Settings Button
         startupForm.openSettings.BackColor = ButtonColorStyleofMainButtons
         startupForm.openSettings.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
-
+        'About Button
         startupForm.openAbout.BackColor = ButtonColorStyleofMainButtons
         startupForm.openAbout.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
-
-        startupForm.browseWiki.BackColor = ButtonColorStyleofMainButtons
-        startupForm.browseWiki.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Browse in Wiki Button
+        startupForm.openWikibrowse.BackColor = ButtonColorStyleofMainButtons
+        startupForm.openWikibrowse.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
 #End Region
 
         ' All Forms Must be registered Here
 
 #Region "startupForm"
-        Dim GlobalAppColorStyleFormPanel As Color = ColorTranslator.FromWin32(RGB(71, 142, 78)) ' Basic Style = Teal
-        Dim GlobalAppColorStyleFormBackground As Color = ColorTranslator.FromWin32(RGB(54, 188, 72)) ' Basic Style = LightSeaGreen
+        Dim GlobalAppColorStyleFormPanel As Color = ColorTranslator.FromWin32(RGB(71, 142, 78)) ' Basic Style = Dark Green
+        Dim GlobalAppColorStyleFormBackground As Color = ColorTranslator.FromWin32(RGB(54, 188, 72)) ' Basic Style = Light Green
 
         startupForm.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel ' Panel Back Color
         startupForm.BackColor = GlobalAppColorStyleFormBackground ' Form Back-Color
@@ -161,6 +171,22 @@ Public Class Globals
         allStructures.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
         allStructures.BackColor = GlobalAppColorStyleFormBackground
 #End Region ' Colors of allStructures
+
+#Region "browseWiki"
+        browseWiki.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        browseWiki.BackColor = GlobalAppColorStyleFormBackground
+
+        browseWiki.browse.BackColor = ButtonColorStyleofMainButtons ' Browse Button
+        browseWiki.browse.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+
+        browseWiki.exitForm.BackColor = ButtonColorStyleofMainButtons
+        browseWiki.exitForm.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
+
+#Region "allCommands"
+        allCommands.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        allCommands.BackColor = GlobalAppColorStyleFormBackground
+#End Region
 
         ' End of all forms
 
