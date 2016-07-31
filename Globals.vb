@@ -1,11 +1,14 @@
 Imports System.Net
 Imports System.Drawing
+Imports System.IO
 Imports Minecraft_Explorer.startupForm
 Imports Minecraft_Explorer.Updater
 Imports Minecraft_Explorer.allMobs
 Imports Minecraft_Explorer.allBlocks
 Imports Minecraft_Explorer.allItmes
 Imports Minecraft_Explorer.allRedstoneCommands
+Imports Minecraft_Explorer.playerCommands
+Imports Minecraft_Explorer.updateNotification
 Imports Minecraft_Explorer.allStructures
 Imports Minecraft_Explorer.Settings
 Imports Minecraft_Explorer.authorAndThanks
@@ -41,11 +44,19 @@ Public Class Globals
     Public Shared GlobalAppColorStyleFormPanel As Color
 
     Public Shared ButtonColorStyleofMainButtons As Color
+    ' Variables and Stuff.
+    Public Shared UserName = Environment.UserName
+
+    Public Shared Minecraft_Explorer_Process As Process()
 
 
     ' in der .initGlobals() Klasse koennen auch andere Sachen,
     ' ausser Variablen gesetzt werden.
     Public Shared Sub initGlobals() ' Initialize the Variables
+
+        Dim DownloadPath = "C:/Users/" + UserName + "/Downloads"
+        Minecraft_Explorer_Process = Process.GetProcessesByName("Minecraft Explorer")
+
 
 #Region "Application Icons"
         Dim close_icon As Image = My.Resources.icon_close ' Icon size = 16 x 16
@@ -186,12 +197,41 @@ Public Class Globals
 #Region "allCommands"
         allCommands.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
         allCommands.BackColor = GlobalAppColorStyleFormBackground
+
+        allCommands.PictureBox1.Image = close_icon
+#End Region
+
+#Region "updateNotification"
+        updateNotification.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        updateNotification.BackColor = GlobalAppColorStyleFormBackground
+
+        updateNotification.okay.BackColor = ButtonColorStyleofMainButtons
+        updateNotification.okay.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
+
+#Region "playerCommands"
+        playerCommands.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        playerCommands.BackColor = GlobalAppColorStyleFormBackground
 #End Region
 
         ' End of all forms
 
     End Sub
-    Public Shared Sub Update() ' Update Function for the Program
+    Public Shared Sub Update(ServerURL As String, FolderPath As String, DesktopEXE As String, CredentialsUsername As String, CredentialsPassword As String,
+                             showUI As Boolean, timeout As Integer, overwrite As Boolean) ' Update Function for the Program
+        Try
+            My.Computer.Network.DownloadFile(ServerURL, FolderPath, CredentialsUsername, CredentialsPassword, showUI, timeout, overwrite)
+
+            If File.Exists(FolderPath) Then
+                File.Move(FolderPath, DesktopEXE)
+            End If
+
+        Catch ex As Exception
+            ' Ignore error, works fine...
+        End Try
+
+
+
 
     End Sub
 End Class
