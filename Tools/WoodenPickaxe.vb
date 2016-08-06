@@ -12,7 +12,7 @@ Public Class WoodenPickaxe
     Private Sub WoodenPickaxe_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_Craftingrecipe.WaitOnLoad = True
 
-        load_Craftingrecipe.ImageLocation = Crafting_WoodenPickaxe
+        load_Craftingrecipe.ImageLocation = ImageHandler.Crafting_WoodenPickaxe
     End Sub
 
 #Region "Mouse Handle"
