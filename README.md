@@ -1,5 +1,6 @@
 # Minecraft-Explorer
 a Minecraft Explorer that will be like the Wiki.
+Hours Programmed on this: 28h
 
 # Dont use any Of this Code, Small Snippets are okay but Write your Own!
 you dont learn anything out of C&P
