@@ -174,6 +174,9 @@ Public Class Globals
 #Region "Settings"
         Settings.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
         Settings.BackColor = GlobalAppColorStyleFormBackground
+
+        Settings.CheckNet.BackColor = ButtonColorStyleofMainButtons
+        Settings.CheckNet.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
 #End Region ' Colors of Settings
 
 #Region "allItems"
