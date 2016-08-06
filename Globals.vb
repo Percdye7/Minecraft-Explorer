@@ -1,3 +1,4 @@
+Imports Minecraft_Explorer.ImageHandler
 Imports System.Net
 Imports System.Drawing
 Imports System.IO
@@ -14,6 +15,10 @@ Imports Minecraft_Explorer.Settings
 Imports Minecraft_Explorer.authorAndThanks
 Imports Minecraft_Explorer.browseWiki
 Imports Minecraft_Explorer.allCommands
+
+' All Item Sites
+Imports Minecraft_Explorer.toolMain
+Imports Minecraft_Explorer.WoodenPickaxe
 
 Public Class Globals
     ' Global Variables of the Minecraft Explorer
@@ -54,9 +59,11 @@ Public Class Globals
     ' ausser Variablen gesetzt werden.
     Public Shared Sub initGlobals() ' Initialize the Variables
 
+        initImgs() ' Initialize all Images for Items/ Crafting Recipies
+
+
         Dim DownloadPath = "C:/Users/" + UserName + "/Downloads"
         Minecraft_Explorer_Process = Process.GetProcessesByName("Minecraft Explorer")
-
 
 #Region "Application Icons"
         Dim close_icon As Image = My.Resources.icon_close ' Icon size = 16 x 16
@@ -129,6 +136,7 @@ Public Class Globals
 
         ' All Forms Must be registered Here
 
+#Region "All Forms"
 #Region "startupForm"
         Dim GlobalAppColorStyleFormPanel As Color = ColorTranslator.FromWin32(RGB(71, 142, 78)) ' Basic Style = Dark Green
         Dim GlobalAppColorStyleFormBackground As Color = ColorTranslator.FromWin32(RGB(54, 188, 72)) ' Basic Style = Light Green
@@ -171,6 +179,9 @@ Public Class Globals
 #Region "allItems"
         allItmes.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
         allItmes.BackColor = GlobalAppColorStyleFormBackground
+
+        allItmes.openTools.BackColor = ButtonColorStyleofMainButtons
+        allItmes.openTools.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
 #End Region ' Colors of allItems
 
 #Region "allRedstoneCommands"
@@ -214,6 +225,125 @@ Public Class Globals
         playerCommands.BackColor = GlobalAppColorStyleFormBackground
 #End Region
 
+#End Region
+
+#Region "All Item Sites"
+
+#Region "toolMain"
+
+
+#Region "toolMain form Colors"
+        ' Form Color
+        toolMain.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        toolMain.BackColor = GlobalAppColorStyleFormBackground
+#End Region
+
+        'Buttons Colors
+
+#Region "Wooden Tool Buttons"
+        ' Wooden Pickaxe
+        toolMain.btn_WoodenPickaxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_WoodenPickaxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Wooden Axe
+        toolMain.btn_WoodenAxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_WoodenAxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Wooden Shovel
+        toolMain.btn_WoodenShovel.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_WoodenShovel.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Wooden Hoe
+        toolMain.btn_WoodenHoe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_WoodenHoe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
+
+#Region "Stone Tool Buttons"
+        ' Stone Pickaxe
+        toolMain.btn_StonePickaxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_StonePickaxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Stone Axe
+        toolMain.btn_StoneAxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_StoneAxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Stone Shovel
+        toolMain.btn_StoneShovel.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_StoneShovel.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Stone Hoe
+        toolMain.btn_StoneHoe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_StoneHoe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
+
+#Region "Iron Tool Buttons"
+        'Iron Pickaxe
+        toolMain.btn_IronPickaxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_IronPickaxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Iron Axe
+        toolMain.btn_IronAxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_IronAxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Iron Shovel
+        toolMain.btn_IronShovel.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_IronShovel.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Iron Hoe
+        toolMain.btn_IronHoe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_IronHoe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
+
+#Region "Gold Tool Buttons"
+        ' Gold Pickaxe
+        toolMain.btn_GoldPickaxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_GoldPickaxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Gold Axe
+        toolMain.btn_GoldAxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_GoldAxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Gold Shovel
+        toolMain.btn_GoldShovel.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_GoldShovel.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Gold Hoe
+        toolMain.btn_GoldHoe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_GoldHoe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
+
+#Region "Diamonds Tool Buttons"
+        'Diamond Pickaxe
+        toolMain.btn_DiamondPickaxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_DiamondPickaxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Diamond Axe
+        toolMain.btn_DiamondAxe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_DiamondAxe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Diamond Shovel
+        toolMain.btn_DiamondShovel.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_DiamondShovel.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        'Diamond Hoe
+        toolMain.btn_DiamondHoe.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_DiamondHoe.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
+
+#Region "Other Tools Button"
+        ' Fishing Rod
+        toolMain.btn_othersFishingRod.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_othersFishingRod.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Flint and Steel
+        toolMain.btn_othersFlintAndSteel.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_othersFlintAndSteel.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Shears
+        toolMain.btn_othersShears.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_othersShears.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+        ' Shield
+        toolMain.btn_othersShield.BackColor = ButtonColorStyleofMainButtons
+        toolMain.btn_othersShield.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+#End Region
+
+
+#End Region
+
+#Region "Wooden Pickaxe"
+        WoodenPickaxe.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        WoodenPickaxe.BackColor = GlobalAppColorStyleFormBackground
+#End Region
+
+
+
+
+#End Region
+
+
         ' End of all forms
 
     End Sub
@@ -229,9 +359,5 @@ Public Class Globals
         Catch ex As Exception
             ' Ignore error, works fine...
         End Try
-
-
-
-
     End Sub
 End Class
