@@ -20,6 +20,10 @@ Imports Minecraft_Explorer.allCommands
 Imports Minecraft_Explorer.toolMain
 Imports Minecraft_Explorer.WoodenPickaxe
 
+' Settings Sites
+
+Imports Minecraft_Explorer.CheckMinecraftServerStatus
+
 Public Class Globals
     ' Global Variables of the Minecraft Explorer
     ' Summary <Public Shared VARNAME as DATATYPE>
@@ -31,6 +35,17 @@ Public Class Globals
     ' Bereits Gesetzt werden, und NICHT in der Form selber,
     ' Die Betroffene Form welche das Ziel-Control besitzt muss Importiert werden.
     ' Summary <Imports Minecraft_Explorer.Zielform>
+
+
+    ' Application Server Strings
+    Public Shared MinecraftNET_Servers As String
+    Public Shared AUTH_Servers As String
+    Public Shared SKIN_Servers As String
+    Public Shared ACCOUNT_Servers As String
+    Public Shared SESSION_Servers As String
+    Public Shared API_Servers As String
+
+    Public Shared PingGoogle As String
 
     ' Application Icons
     Public Shared close_icon As Image
@@ -44,6 +59,13 @@ Public Class Globals
     Public Shared RedstoneIcon As Image
     Public Shared blockStructureBlock As Image
     Public Shared iconCommandBlock As Image
+
+    Public Shared Settings_GREENLIT As Image
+    Public Shared Settings_REDLIT As Image
+    Public Shared Settings_CHECKLIT As Image
+
+    Public Shared Settings_UNABLELIT As Image
+
     ' Application Colors
     Public Shared GlobalAppColorStyleFormBackground As Color
     Public Shared GlobalAppColorStyleFormPanel As Color
@@ -54,6 +76,18 @@ Public Class Globals
 
     Public Shared Minecraft_Explorer_Process As Process()
 
+    ' Network Function
+    Public Shared Function CheckNetworkConnection(URL As String)
+        Try
+            My.Computer.Network.Ping(URL)
+            Return 1
+        Catch ex As Exception
+            Return 0
+        End Try
+
+    End Function
+
+
 
     ' in der .initGlobals() Klasse koennen auch andere Sachen,
     ' ausser Variablen gesetzt werden.
@@ -61,9 +95,30 @@ Public Class Globals
 
         initImgs() ' Initialize all Images for Items/ Crafting Recipies
 
+#Region "Bind Lits from Resources"
+        Settings_GREENLIT = My.Resources.GREENLIT
+        Settings_REDLIT = My.Resources.REDLIT
+        Settings_CHECKLIT = My.Resources.CHECKLIT
 
+        Settings_UNABLELIT = My.Resources.UNABLELIT
+#End Region
+
+#Region "Bind all Server Strings to URL"
+        MinecraftNET_Servers = "www.minecraft.net"
+        AUTH_Servers = "authserver.mojang.com"
+        SKIN_Servers = "textures.minecraft.net"
+        ACCOUNT_Servers = "account.mojang.com"
+        SESSION_Servers = "sessionserver.mojang.com"
+        API_Servers = "api.mojang.com"
+
+        PingGoogle = "www.google.com"
+#End Region
+
+#Region "Set Download Path & Process"
         Dim DownloadPath = "C:/Users/" + UserName + "/Downloads"
         Minecraft_Explorer_Process = Process.GetProcessesByName("Minecraft Explorer")
+#End Region
+
 
 #Region "Application Icons"
         Dim close_icon As Image = My.Resources.icon_close ' Icon size = 16 x 16
@@ -177,6 +232,9 @@ Public Class Globals
 
         Settings.CheckNet.BackColor = ButtonColorStyleofMainButtons
         Settings.CheckNet.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+
+        Settings.CheckMc.BackColor = ButtonColorStyleofMainButtons
+        Settings.CheckMc.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
 #End Region ' Colors of Settings
 
 #Region "allItems"
@@ -226,6 +284,18 @@ Public Class Globals
 #Region "playerCommands"
         playerCommands.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
         playerCommands.BackColor = GlobalAppColorStyleFormBackground
+#End Region
+
+
+#Region "CheckMinecraftServerStatus"
+        CheckMinecraftServerStatus.formBorderPanel.BackColor = GlobalAppColorStyleFormPanel
+        CheckMinecraftServerStatus.BackColor = GlobalAppColorStyleFormBackground
+
+        CheckMinecraftServerStatus.okay.BackColor = ButtonColorStyleofMainButtons
+        CheckMinecraftServerStatus.okay.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
+
+        CheckMinecraftServerStatus.tryagain.BackColor = ButtonColorStyleofMainButtons
+        CheckMinecraftServerStatus.tryagain.FlatAppearance.BorderColor = ButtonColorStyleofMainButtons
 #End Region
 
 #End Region
@@ -350,8 +420,156 @@ Public Class Globals
         ' End of all forms
 
     End Sub
+
+    Public Shared Sub CheckMinecraftServers()
+
+#Region "Check Minecraft.net"
+        If CheckNetworkConnection(MinecraftNET_Servers) = 1 Then
+            GREENLIT(CheckMinecraftServerStatus.picturebox_minecraftnet)
+            SuccessMessage(CheckMinecraftServerStatus.minecraftnetlabel, "Minecraft.net")
+        Else
+            If CheckNetworkConnection(MinecraftNET_Servers) = 0 Then
+                REDLIT(CheckMinecraftServerStatus.picturebox_minecraftnet)
+                ErrorMessage(CheckMinecraftServerStatus.minecraftnetlabel, "Minecraft.net")
+            End If
+        End If
+#End Region ' Minecraftnet
+
+#Region "Check Authservers"
+        If CheckNetworkConnection(AUTH_Servers) = 1 Then
+            GREENLIT(CheckMinecraftServerStatus.picturebox_authserver)
+            SuccessMessage(CheckMinecraftServerStatus.minecraftauthlabel, "Authserver")
+        Else
+            If CheckNetworkConnection(AUTH_Servers) = 0 Then
+                REDLIT(CheckMinecraftServerStatus.picturebox_authserver)
+                ErrorMessage(CheckMinecraftServerStatus.minecraftauthlabel, "Authserver")
+            End If
+        End If
+#End Region ' Authservers
+
+#Region "Check Skinservers"
+        If CheckNetworkConnection(SKIN_Servers) = 1 Then
+            GREENLIT(CheckMinecraftServerStatus.picturebox_skinserver)
+            SuccessMessage(CheckMinecraftServerStatus.minecraftskinlabel, "Skinserver")
+        Else
+            If CheckNetworkConnection(SKIN_Servers) = 0 Then
+                REDLIT(CheckMinecraftServerStatus.picturebox_skinserver)
+                ErrorMessage(CheckMinecraftServerStatus.minecraftskinlabel, "Skinserver")
+            End If
+        End If
+#End Region ' Skinservers
+
+#Region "Check Accountservers"
+        If CheckNetworkConnection(ACCOUNT_Servers) = 1 Then
+            GREENLIT(CheckMinecraftServerStatus.picturebox_accountserver)
+            SuccessMessage(CheckMinecraftServerStatus.minecraftaccountlabel, "Accountserver")
+        Else
+            If CheckNetworkConnection(ACCOUNT_Servers) = 0 Then
+                REDLIT(CheckMinecraftServerStatus.picturebox_accountserver)
+                ErrorMessage(CheckMinecraftServerStatus.minecraftaccountlabel, "Accountserver")
+            End If
+        End If
+#End Region ' Accountservers
+
+#Region "Check Sessionservers"
+        If CheckNetworkConnection(SESSION_Servers) = 1 Then
+            GREENLIT(CheckMinecraftServerStatus.picturebox_sessionserver)
+            SuccessMessage(CheckMinecraftServerStatus.minecraftsessionlabel, "Sessionserver")
+        Else
+            If CheckNetworkConnection(SESSION_Servers) = 0 Then
+                REDLIT(CheckMinecraftServerStatus.picturebox_sessionserver)
+                ErrorMessage(CheckMinecraftServerStatus.minecraftsessionlabel, "Sessionserver")
+            End If
+        End If
+#End Region
+
+#Region "Check Apiservers"
+        If CheckNetworkConnection(API_Servers) = 1 Then
+            GREENLIT(CheckMinecraftServerStatus.picturebox_apiserver)
+            SuccessMessage(CheckMinecraftServerStatus.minecraftapilabel, "Apiserver")
+        Else
+            If CheckNetworkConnection(API_Servers) = 0 Then
+                REDLIT(CheckMinecraftServerStatus.picturebox_apiserver)
+                ErrorMessage(CheckMinecraftServerStatus.minecraftapilabel, "Apiserver")
+            End If
+        End If
+#End Region
+
+#Region "Check Users Network Connection"
+        If CheckNetworkConnection(PingGoogle) = 1 Then
+            GREENLIT(CheckMinecraftServerStatus.picturebox_ownNetwork)
+            NetworkSuccessMessage(CheckMinecraftServerStatus.Networklabel)
+        Else
+            If CheckNetworkConnection(PingGoogle) = 0 Then
+                REDLIT(CheckMinecraftServerStatus.picturebox_ownNetwork)
+                MsgBox("You are Currently OFFLINE. Because of that, the Status of All Servers, won't Be Displayed Right!", MsgBoxStyle.Critical, "Warning!")
+
+                UNABLELIT(CheckMinecraftServerStatus.picturebox_authserver)
+                UNABLELIT(CheckMinecraftServerStatus.picturebox_authserver)
+                UNABLELIT(CheckMinecraftServerStatus.picturebox_authserver)
+                UNABLELIT(CheckMinecraftServerStatus.picturebox_authserver)
+                UNABLELIT(CheckMinecraftServerStatus.picturebox_authserver)
+                UNABLELIT(CheckMinecraftServerStatus.picturebox_authserver)
+
+                ErrorMessage(CheckMinecraftServerStatus.minecraftnetlabel, "Minecraft.net")
+                ErrorMessage(CheckMinecraftServerStatus.minecraftnetlabel, "Authserver")
+                ErrorMessage(CheckMinecraftServerStatus.minecraftskinlabel, "Skinserver")
+                ErrorMessage(CheckMinecraftServerStatus.minecraftaccountlabel, "Accountserver")
+                ErrorMessage(CheckMinecraftServerStatus.minecraftsessionlabel, "Sessionserver")
+                ErrorMessage(CheckMinecraftServerStatus.minecraftapilabel, "Apiserver")
+
+                NetworkErrorMessage(CheckMinecraftServerStatus.Networklabel)
+            End If
+        End If
+#End Region
+
+    End Sub
+
+
+#Region "GREEN & RED LIT and Unable LIT"
+    Public Shared Sub GREENLIT(SelectedPicturebox As PictureBox) ' Minecraft.net
+        SelectedPicturebox.Image = Settings_GREENLIT
+    End Sub
+
+    Public Shared Sub REDLIT(SelectedPicturebox As PictureBox) ' Minecraft.net
+        SelectedPicturebox.Image = Settings_REDLIT
+    End Sub
+
+    Public Shared Sub UNABLELIT(SelectedPicturebox As PictureBox) ' Minecraft.net
+        SelectedPicturebox.Image = Settings_UNABLELIT
+    End Sub
+
+    Public Shared Sub SuccessMessage(Target As Label, Name As String) ' Minecraft.net
+        Target.Text = "Service " + Name + " is Online!"
+        Target.ForeColor = ColorTranslator.FromWin32(RGB(155, 255, 0))
+    End Sub
+    Public Shared Sub ErrorMessage(Target As Label, Name As String) ' Minecraft.net
+        Target.Text = "Service " + Name + " is Offline!"
+        Target.ForeColor = ColorTranslator.FromWin32(RGB(255, 8, 0))
+    End Sub
+
+
+
+
+    Public Shared Sub NetworkSuccessMessage(Target As Label) ' Minecraft.net
+        Target.Text = "You are Online!"
+        Target.ForeColor = ColorTranslator.FromWin32(RGB(155, 255, 0))
+    End Sub
+    Public Shared Sub NetworkErrorMessage(Target As Label) ' Minecraft.net
+        Target.Text = "You are Offline!"
+        Target.ForeColor = ColorTranslator.FromWin32(RGB(255, 8, 0))
+    End Sub
+
+
+
+
+
+#End Region
+
+
+#Region "Update Sub"
     Public Shared Sub Update(ServerURL As String, FolderPath As String, DesktopEXE As String, CredentialsUsername As String, CredentialsPassword As String,
-                             showUI As Boolean, timeout As Integer, overwrite As Boolean) ' Update Function for the Program
+                         showUI As Boolean, timeout As Integer, overwrite As Boolean) ' Update Function for the Program
         Try
             My.Computer.Network.DownloadFile(ServerURL, FolderPath, CredentialsUsername, CredentialsPassword, showUI, timeout, overwrite)
 
@@ -363,4 +581,5 @@ Public Class Globals
             ' Ignore error, works fine...
         End Try
     End Sub
+#End Region
 End Class
